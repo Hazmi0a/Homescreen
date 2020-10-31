@@ -17,6 +17,9 @@ export default function settings() {
         <ListGroup.Item action>{t("change_dial_tone")}</ListGroup.Item>
         <ListGroup.Item action>{t("change_connection")}</ListGroup.Item>
         <ListGroup.Item action>{t("change_speed")}</ListGroup.Item>
+      </ListGroup>
+      <br />
+      <ListGroup variant="flush">
         <ListGroup.Item action>{t("document_processor")}</ListGroup.Item>
         <ListGroup.Item action>{t("system_info")}</ListGroup.Item>
         <ListGroup.Item action>{t("system_reset")}</ListGroup.Item>

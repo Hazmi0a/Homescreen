@@ -24,10 +24,14 @@ import {
   Popover,
   Tooltip,
 } from "react-bootstrap";
+import { RecievingFax } from "../components/RecievingFax/RecievingFax";
+import { SendingFax } from "../components/SendingFax/SendingFax";
 
 export default function Home() {
   return (
     <>
+      <SendingFax />
+      <RecievingFax />
       <Image
         src="/ntis.png"
         alt="Picture of the author"

@@ -24,7 +24,7 @@ export const StatusBar = () => {
         bg="dark"
         expand="lg"
         fixed="top"
-        className="justify-content-between"
+        className="justify-content-between statbar bg-dark-trans"
       >
         <Button
           size="sm"
