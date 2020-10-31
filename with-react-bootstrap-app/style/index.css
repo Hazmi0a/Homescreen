@@ -1,0 +1,52 @@
+/* ensure all pages have Bootstrap CSS */
+/* @import "~bootstrap/dist/css/bootstrap.min.css"; */
+@import "./bootstrap.min.css";
+
+.md-container {
+  max-width: 800px;
+  padding-top: 2rem;
+}
+
+.sml-card {
+  width: 22rem;
+  margin: 1rem 0;
+}
+
+.cntr-footer {
+  height: 80px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #ccc;
+}
+
+.sml-logo {
+  height: 1em;
+  margin-left: 10px;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/ntis.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.test {
+  margin-left: 0;
+}
+
+.pad {
+  margin-top: 56px;
+}
+
+.bg-dark {
+  background-color: black;
+}

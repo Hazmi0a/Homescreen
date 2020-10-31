@@ -1,0 +1,12 @@
+{
+  "translations": {
+    "change_time": "Change Time",
+    "change_lang": "Change Lanugage",
+    "change_dial_tone": "Change Dial Tone",
+    "change_connection": "Change Connection",
+    "change_speed": "Change_Speed",
+    "document_processor": "Document Processor",
+    "system_info": "System Info",
+    "system_reset": "System Reset"
+  }
+}
