@@ -17,7 +17,7 @@ export const SendingFax = ({ phoneNumber, documentCount, progress }) => {
           <Modal.Title>{t("sending_fax")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {t("To")} {phoneNumber}
+          {t("to")} {phoneNumber}
         </Modal.Body>
         <Modal.Body>
           {t("number_of_documents")} {documentCount}

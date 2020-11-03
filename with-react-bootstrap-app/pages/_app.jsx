@@ -1,4 +1,5 @@
 import "../style/index.css";
+import "../style/keyboard.css";
 import { NavigationBar } from "../components/NavigationBar/NavigationBar";
 import { StatusBar } from "../components/StatusBar/StatusBar";
 import { I18nextProvider } from "react-i18next";
