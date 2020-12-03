@@ -2,9 +2,7 @@
 
 # dependencies
 server/node_modules
-with-react-bootstrap-app/node_modules
-server/package-lock.json
-with-react-bootstrap-app/package-lock.json
+ui/node_modules
 /.pnp
 .pnp.js
 
@@ -13,7 +11,7 @@ with-react-bootstrap-app/package-lock.json
 /coverage
 
 # next.js
-with-react-bootstrap-app/.next/
+ui/.next/
 /out/
 
 # production
