@@ -14,6 +14,12 @@
     "from": "From",
     "document": "Document",
     "number_of_documents": "Number Of Documents",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "ok": "Ok",
+    "call": "Call",
+    "hook_lift": "Hook lift",
+    "failed to extract number !": "Failed to extract number !",
+    "call a number followed by a #": "Call a number followed by a #",
+    "error": "Error"
   }
 }

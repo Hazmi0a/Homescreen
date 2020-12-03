@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
+import io from "socket.io-client";
 import PropTypes from "prop-types";
 
 import {
@@ -15,8 +16,22 @@ import {
 } from "react-bootstrap";
 
 export const StatusBar = () => {
+  const ENDPOINT = process.env.API_ENDPOINT;
   const [show, setShow] = useState(false);
+  const [currentMode, setCurrentMode] = useState("T.30");
   const target = useRef(null);
+  const t30 = "T.30";
+  const t38 = "T.38";
+
+  const handleModeChange = (mode) => {
+    const socket = io(ENDPOINT);
+    socket.emit("new mode", mode, (ack) => {
+      console.log(ack);
+      setCurrentMode(ack);
+      
+    });
+    
+  }
   return (
     <Container>
       <Navbar
@@ -48,10 +63,10 @@ export const StatusBar = () => {
             11:00 AM
           </Nav.Link>
         </Nav.Item>
-        <NavDropdown title="T.30" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">T.30</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">T.38</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2"></NavDropdown.Item>
+        <NavDropdown title={currentMode} id="basic-nav-dropdown">
+          <NavDropdown.Item onClick={() => handleModeChange(t30)}>{t30}</NavDropdown.Item>
+          <NavDropdown.Item onClick={() => handleModeChange(t38)}>{t38}</NavDropdown.Item>
+         
         </NavDropdown>
       </Navbar>
     </Container>

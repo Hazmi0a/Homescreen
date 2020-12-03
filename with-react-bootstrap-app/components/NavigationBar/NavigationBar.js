@@ -1,17 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faArrowLeft, faCog } from "@fortawesome/free-solid-svg-icons";
 
 import { Row, Col, Navbar, Nav } from "react-bootstrap";
-
-export const NavigationBar = () => {
+import io from "socket.io-client";
+let socket;
+export const NavigationBar = (settingsPage) => {
   const router = useRouter();
-
+  
+  const test = () => {
+    console.log(settingsPage);
+  };
   const backFunction = () => {
+    
+  
     if (router.pathname != "/") {
       router.back();
     }
+    
   };
   return (
     <>
@@ -29,7 +36,7 @@ export const NavigationBar = () => {
               </Nav.Link>
             </Col>
             <Col>
-              <Nav.Link href="/settings">
+              <Nav.Link onSelect={() => settingsPage()}>
                 <FontAwesomeIcon icon={faCog} />
               </Nav.Link>
             </Col>

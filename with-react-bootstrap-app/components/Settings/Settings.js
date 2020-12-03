@@ -6,29 +6,28 @@ import { faSun } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 import { ListGroup } from "react-bootstrap";
-import { useConfirmationDialog } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
-export default function settings() {
+export const  Settings = () =>{
   const { t, i18n } = useTranslation();
   
  
-  const ENDPOINT = process.env.API_ENDPOINT;
-  const { getConfirmation } = useConfirmationDialog();
-  useEffect(() => {
+//   const ENDPOINT = process.env.API_ENDPOINT;
+//   const { getConfirmation } = useConfirmationDialog();
+//   useEffect(() => {
 
-    let socket = io(ENDPOINT);
-    socket.on("new message", data => {
-       getConfirmation({
-        title: data.title,
-        message: data.message,
-        type: data.type
-      });
-      console.log(data.type);
-    });
-    // CLEAN UP THE EFFECT
-    return () => socket.disconnect();
-    //
+//     let socket = io(ENDPOINT);
+//     socket.on("new message", data => {
+//        getConfirmation({
+//         title: data.title,
+//         message: data.message,
+//         type: data.type
+//       });
+//       console.log(data.type);
+//     });
+//     // CLEAN UP THE EFFECT
+//     return () => socket.disconnect();
+//     //
     
-  }, [ENDPOINT]);
+//   }, [ENDPOINT]);
 
   return (
     <div className="pad">
@@ -49,4 +48,4 @@ export default function settings() {
   );
 }
 
-settings.propTypes = {};
+Settings.propTypes = {};

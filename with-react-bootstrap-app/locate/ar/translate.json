@@ -4,9 +4,18 @@
     "change_lang": "Change Lanugage",
     "change_dial_tone": "Change Dial Tone",
     "change_connection": "Change Connection",
-    "change_speed": "Change_Speed",
+    "change_speed": "Change Speed",
     "document_processor": "Document Processor",
     "system_info": "System Info",
-    "system_reset": "System Reset"
+    "system_reset": "System Reset",
+    "sending_fax": "Sending Fax",
+    "recieving_fax": "Recieving Fax",
+    "to": "To",
+    "from": "From",
+    "document": "Document",
+    "number_of_documents": "Number Of Documents",
+    "cancel": "Cancel",
+    "ok": "Ok",
+    "call": "اتصال وارد"
   }
 }

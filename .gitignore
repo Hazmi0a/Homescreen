@@ -1,15 +1,19 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+server/node_modules
+with-react-bootstrap-app/node_modules
+server/package-lock.json
+with-react-bootstrap-app/package-lock.json
 /.pnp
 .pnp.js
 
+# next.config.js
 # testing
 /coverage
 
 # next.js
-/.next/
+with-react-bootstrap-app/.next/
 /out/
 
 # production

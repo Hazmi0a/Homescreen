@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Button, Modal, ProgressBar } from "react-bootstrap";
 
 export const SendingFax = ({ phoneNumber, documentCount, progress }) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const { t, i18n } = useTranslation();
 
   const handleClose = () => setShow(false);
