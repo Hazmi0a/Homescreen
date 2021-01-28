@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,  } from "react";
 import io from "socket.io-client";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,7 +15,10 @@ import {
 } from "react-bootstrap";
 import { useConfirmationDialog } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
 import { i18 } from "react-i18next";
-export default function settings() {
+
+
+
+export const Settings = () => {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState("pad RTL");
   const ENDPOINT = process.env.API_ENDPOINT;
@@ -71,4 +74,3 @@ export default function settings() {
   );
 }
 
-settings.propTypes = {};

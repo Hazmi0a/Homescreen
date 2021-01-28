@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faArrowLeft, faCog } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,12 +6,11 @@ import { Row, Col, Navbar, Nav } from "react-bootstrap";
 import io from "socket.io-client";
 let socket;
 export const NavigationBar = (settingsPage) => {
-  const router = useRouter();
 
   const backFunction = () => {
-    if (router.pathname != "/") {
-      router.back();
-    }
+    // if (router.pathname != "/") {
+    //   router.back();
+    // }
   };
   return (
     <>

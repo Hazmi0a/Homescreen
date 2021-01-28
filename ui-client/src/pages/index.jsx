@@ -1,4 +1,3 @@
-import Head from "next/head";
 import React, { useState, useRef, useEffect } from "react";
 import io from "socket.io-client";
 import axios from "axios";
@@ -28,10 +27,7 @@ import {
 } from "react-bootstrap";
 import { RecievingFax } from "../components/RecievingFax/RecievingFax";
 import { SendingFax } from "../components/SendingFax/SendingFax";
-import { NavigationBar } from "../components/NavigationBar/NavigationBar";
 import { StatusBar } from "../components/StatusBar/StatusBar";
-import { Settings } from "../components/Settings/Settings";
-import { DialogBox } from "../components/DialogBox/DialogBox";
 
 import { useConfirmationDialog } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
 
@@ -65,11 +61,11 @@ export default function Home() {
 
   return (
     <>
-      <StatusBar />
+      {/* <StatusBar /> */}
       <SendingFax />
       <RecievingFax />
       <Image
-        src="/ntis.png"
+        src="ntis.jpg"
         alt="Picture of the author"
         width={1250}
         height={650}
