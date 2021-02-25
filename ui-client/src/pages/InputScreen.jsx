@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import Keyboard from "react-simple-keyboard";
 import Arabic from "../locate/ar/arabic";
 import English from "../locate/en/english";
 import io from "socket.io-client";
-
+import history from "../history";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
@@ -20,6 +19,7 @@ import {
 import arabic from "../locate/ar/arabic";
 
 let socket;
+const ENDPOINT = process.env.REACT_APP_API_ENDPOINT ?? "http://localhost:4001/";
 
 export const InputScreen = () => {
   const [input, setInput] = useState("");
@@ -27,9 +27,6 @@ export const InputScreen = () => {
   const [lang, setLang] = useState(English);
   const [rtl, setRtl] = useState(false);
   const keyboard = useRef();
-  const router = useRouter();
-  const ENDPOINT = process.env.API_ENDPOINT;
-  
 
   const onChange = (input) => {
     setInput(input);
@@ -67,17 +64,16 @@ export const InputScreen = () => {
   const handleLangSubmit = (input) => {
     socket = io(ENDPOINT);
     socket.emit("new password", input, (ack) => {
-     setInput(ack);
+      setInput(ack);
     });
-  }
+  };
 
   useEffect(() => {
     socket = io(ENDPOINT);
-    socket.on("authentication", data => {
+    socket.on("authentication", (data) => {
       console.log(data);
-     data == "Success" ? router.push("/") : console.log(data); 
-   });
-
+      data == "Success" ? history.push("/") : console.log(data);
+    });
   }, []);
 
   return (
@@ -99,5 +95,4 @@ export const InputScreen = () => {
       </div>
     </>
   );
-}
-
+};

@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import React, { useEffect } from "react";
 import "./style/index.css";
 import "./style/keyboard.css";
@@ -10,34 +10,31 @@ import {
   ConfirmationDialogProvider,
   useConfirmationDialog,
 } from "./components/ConfirmationDialogProvider/ConfirmationDialogProvider";
-import Home from './pages/index';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import {Settings} from "./pages/Settings";
-import {InputScreen} from "./pages/InputScreen";
-
+import Home from "./pages/index";
+import { BrowserRouter, Switch, Route, Link, Router } from "react-router-dom";
+import { Settings } from "./pages/Settings";
+import { InputScreen } from "./pages/InputScreen";
+import history from "./history";
 function App() {
   return (
     <I18nextProvider i18n={i18n}>
       <ConfirmationDialogProvider>
-        <Router>
-          <StatusBar />
-          <Switch>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/password">
-            <Home />
-          </Route>
-          <Route path="/">
-            <InputScreen />
-          </Route>
-        </Switch>
-          <NavigationBar />
+        <Router history={history}>
+          <BrowserRouter>
+            <StatusBar />
+            <Switch>
+              <Route path="/settings">
+                <Settings />
+              </Route>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/password">
+                <InputScreen />
+              </Route>
+            </Switch>
+            <NavigationBar />
+          </BrowserRouter>
         </Router>
       </ConfirmationDialogProvider>
     </I18nextProvider>
