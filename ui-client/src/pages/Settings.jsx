@@ -1,28 +1,36 @@
-import React, { useEffect, useState,  } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import io from "socket.io-client";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import {
   Col,
   ListGroup,
+  Item,
   Row,
   Form,
   NavDropdown,
   Button,
+  DropdownButton,
+  Dropdown,
 } from "react-bootstrap";
 import { useConfirmationDialog } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
 import { i18 } from "react-i18next";
-
-
+import { LangContext, context } from "../languageContext";
 
 export const Settings = () => {
   const { t, i18n } = useTranslation();
-  const [lang, setLang] = useState("pad RTL");
   const ENDPOINT = process.env.API_ENDPOINT;
   const { getConfirmation } = useConfirmationDialog();
+
+  const [contextPad, setContextPad] = useContext(LangContext);
+  const [lang, setLang] = useState("pad RTL");
+
+  // console.log("pad", context.pad, setContext(...context, (pad = "pad LTR")));
+  console.log("pad", context.pad);
 
   useEffect(() => {
     let socket = io(ENDPOINT);
@@ -42,35 +50,61 @@ export const Settings = () => {
   const handleChangeLand = (e) => {
     // i18n.changeLanguage("ar");
     // setLangButton(false);
+    // const currentLang = i18n.language;
+    // if (currentLang === "en") {
+    //   i18n.changeLanguage("ar");
+    //   setLang("pad RTL");
+    // } else if (currentLang === "ar") {
+    //   i18n.changeLanguage("en");
+    //   setLang("pad LTR");
+    // }
     const currentLang = i18n.language;
     if (currentLang === "en") {
       i18n.changeLanguage("ar");
-
-      setLang("pad RTL");
+      setContextPad({ pad: "pad RTL" });
     } else if (currentLang === "ar") {
       i18n.changeLanguage("en");
-      setLang("pad LTR");
+      setContextPad({ pad: "pad LTR" });
     }
   };
-
   return (
-    <div className={lang}>
-      <ListGroup variant="flush" className={lang}>
-        <ListGroup.Item action>{t("change_time")}</ListGroup.Item>
+    <LangContext.Consumer>
+      {(context) => (
+        <div className={contextPad.pad}>
+          <ListGroup variant="flush" className={contextPad.pad}>
+            <ListGroup.Item action>{t("change_time")}</ListGroup.Item>
+            <ListGroup.Item action={contextPad.pad} onClick={handleChangeLand}>
+              {t("change_lang")}
+            </ListGroup.Item>
+            <ListGroup.Item action>{t("change_dial_tone")}</ListGroup.Item>
+            <ListGroup.Item action>{t("change_connection")}</ListGroup.Item>
+            <ListGroup.Item action>{t("change_speed")}</ListGroup.Item>
+            <ListGroup.Item action>
+              {" "}
+              <DropdownButton
+                style={{ width: "100%" }}
+                width="100%"
+                variant="secondary"
+                id="dropdown-basic-button"
+                title={t("change_speed")}
+              >
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </DropdownButton>
+            </ListGroup.Item>
+          </ListGroup>
 
-        <ListGroup.Item action={lang} onClick={handleChangeLand}>
-          {t("change_lang")}
-        </ListGroup.Item>
-        <ListGroup.Item action>{t("change_dial_tone")}</ListGroup.Item>
-        <ListGroup.Item action>{t("change_connection")}</ListGroup.Item>
-        <ListGroup.Item action>{t("change_speed")}</ListGroup.Item>
-      </ListGroup>
-      <br />
-      <ListGroup variant="flush">
-        <ListGroup.Item action>{t("system_info")}</ListGroup.Item>
-        <ListGroup.Item action>{t("system_reset")}</ListGroup.Item>
-      </ListGroup>
-    </div>
+          <br />
+
+          <ListGroup variant="flush">
+            <Link to="/settings/SystemInfo">
+              <ListGroup.Item action>{t("system_info")} </ListGroup.Item>
+            </Link>
+            <ListGroup.Item action>{t("system_reset")}</ListGroup.Item>
+          </ListGroup>
+        </div>
+      )}
+    </LangContext.Consumer>
   );
-}
-
+};

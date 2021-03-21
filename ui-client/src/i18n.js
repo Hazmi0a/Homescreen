@@ -4,6 +4,7 @@ import { initReactI18next } from "react-i18next";
 import XHR from "i18next-xhr-backend";
 import languageEN from "./locate/en/translate.json";
 import languageAR from "./locate/ar/translate.json";
+import LangContext from "./languageContext";
 
 i18n
   .use(XHR)

@@ -1,10 +1,10 @@
 {
   "translations": {
-    "change_time": "تغير الوقت",
-    "change_lang": "تغير اللغة",
-    "change_dial_tone": "تغير نغمة الاتصال",
-    "change_connection": "تغير طريقة الاتصال",
-    "change_speed": "تغير سرعة الاتصال",
+    "change_time": "تغيير الوقت",
+    "change_lang": "تغيير اللغة",
+    "change_dial_tone": "تغيير نغمة الاتصال",
+    "change_connection": "تغيير طريقة الاتصال",
+    "change_speed": "تغيير سرعة الاتصال",
     "document_processor": "معالج الوثائق",
     "system_info": "معلومات النظام",
     "system_reset": "اعادة ضبط المصنع",
@@ -18,6 +18,12 @@
     "ok": "موافق",
     "call": "اتصال وارد",
     "t30": "خط هاتف",
-    "t38": "خط رقمي"
+    "t38": "خط رقمي",
+    "model": "النموذج",
+    "device_name": "إسم الجهاز",
+    "settings": "الإعدادات",
+    "ram": "الذاكرة العشوائية",
+    "resolution": "الدقة",
+    "version": "النسخة"
   }
 }

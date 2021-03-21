@@ -22,6 +22,15 @@
     "call a number followed by a #": "Call a number followed by a #",
     "error": "Error",
     "t30": "T.30",
-    "t38": "T.38"
+    "t38": "T.38",
+    "model": "Model",
+    "device_name": "Device Name",
+    "settings": "Settings",
+    "ram": "Ram",
+    "resolution": "Resolution",
+    "version": "Version",
+    "amen": "Amen",
+    "status": "Status",
+    "call_procedure": "Call Procedure"
   }
 }

@@ -5,43 +5,60 @@ import { Button, Modal } from "react-bootstrap";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import io from "socket.io-client";
 
-const ConfirmationDialog = ({ open, title, message, onConfirm, onDismiss, type }) => {
+const ConfirmationDialog = ({
+  open,
+  title,
+  message,
+  onConfirm,
+  onDismiss,
+  type,
+}) => {
   const { t, i18n } = useTranslation();
-  
+
   // based on the type of the dialog wanted, 0 without action buttons, 1 with OK button
   return type == 0 ? (
-    
     <>
-    <Modal centered show={open} onHide={onDismiss}>
-      <Modal.Header >
-        <Modal.Title>{t(title)}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-      {t(message)}
-      </Modal.Body>
-    </Modal>
-  </>
- 
-) :  (
-    
-      <>
       <Modal centered show={open} onHide={onDismiss}>
-        <Modal.Header >
+        <Modal.Header>
           <Modal.Title>{t(title)}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          {t(message)}
-        </Modal.Body>
+        <Modal.Body>{t(message)}</Modal.Body>
+      </Modal>
+    </>
+  ) : type == 1 ? (
+    <>
+      {" "}
+      <Modal centered show={open} onHide={onDismiss}>
+        <Modal.Header>
+          <Modal.Title>{t(title)}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{t(message)}</Modal.Body>
         <Modal.Footer>
-        
-        {/* <Button onClick={onDismiss}>Cancel</Button> */}
+          {/* <Button onClick={onDismiss}>Cancel</Button> */}
           <Button variant="primary" onClick={onConfirm}>
-          {t("ok")}
+            {t("ok")}
           </Button>
         </Modal.Footer>
       </Modal>
     </>
-   
+  ) : (
+    <Modal centered show={open} onHide={onDismiss}>
+      <Modal.Header>
+        <Modal.Title>{t(title)}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {t(message)}
+        <p>{t("insert_document_in_the_connected_fax")}</p>
+        <p>{t("call_number_followed_by_#")}</p>
+        <p>{t("iniaite_call")}</p>
+      </Modal.Body>
+      <Modal.Footer>
+        {/* <Button onClick={onDismiss}>Cancel</Button> */}
+        <Button variant="primary" onClick={onConfirm}>
+          {t("ok")}
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 
@@ -53,10 +70,10 @@ const ConfirmationDialogProvider = ({ children }) => {
   const { t, i18n } = useTranslation();
 
   const openDialog = ({ title, message, type, actionCallback }) => {
-    console.log('openDialog -> setDialogOpen', setDialogOpen)
-    console.log('openDialog -> dialogOpen', dialogOpen)
+    console.log("openDialog -> setDialogOpen", setDialogOpen);
+    console.log("openDialog -> dialogOpen", dialogOpen);
     setDialogOpen(true);
-    setDialogConfig({ title, message, type,actionCallback });
+    setDialogConfig({ title, message, type, actionCallback });
   };
 
   const resetDialog = () => {

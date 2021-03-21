@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faArrowLeft, faCog } from "@fortawesome/free-solid-svg-icons";
-
+import { Link } from "react-router-dom";
 import { Row, Col, Navbar, Nav } from "react-bootstrap";
 import io from "socket.io-client";
 let socket;
 export const NavigationBar = (settingsPage) => {
-
   const backFunction = () => {
     // if (router.pathname != "/") {
     //   router.back();
@@ -14,23 +13,29 @@ export const NavigationBar = (settingsPage) => {
   };
   return (
     <>
-      <Navbar expand="lg" fixed="bottom" variant="dark" bg="dark">
-        <Nav className="justify-content-center" variant="pills">
+      <Navbar
+        className="justify-content-center"
+        style={{ height: "50px" }}
+        fixed="bottom"
+        variant="dark"
+        bg="dark"
+      >
+        <Nav fill variant="tabs">
           <Row>
-            <Col>
-              <Nav.Link onClick={() => backFunction()}>
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </Nav.Link>
+            <Col style={{ marginRight: "10rem" }}>
+              <Link style={{}} onClick={() => backFunction()}>
+                <FontAwesomeIcon size="2x" icon={faArrowLeft} />
+              </Link>
             </Col>
             <Col>
-              <Nav.Link href="/">
-                <FontAwesomeIcon icon={faHome} />
-              </Nav.Link>
+              <Link to="/">
+                <FontAwesomeIcon size="2x" icon={faHome} />
+              </Link>
             </Col>
-            <Col>
-              <Nav.Link href="/settings">
-                <FontAwesomeIcon icon={faCog} />
-              </Nav.Link>
+            <Col style={{ marginLeft: "10rem" }}>
+              <Link to="/settings">
+                <FontAwesomeIcon size="2x" icon={faCog} />
+              </Link>
             </Col>
           </Row>
         </Nav>
