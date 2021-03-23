@@ -1,43 +1,33 @@
 const electron = require("electron");
-const { app, BrowserWindow } = electron;
-const url = `file://${path.join(
-  __dirname,
-  "../build/static/css/main.409ba30b.chunk.css"
-)}`;
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
 
-let mainWindow = null;
+const path = require("path");
+const url = require("url");
+const isDev = require("electron-is-dev");
+
+let mainWindow;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({ width: 900, height: 680 });
+  mainWindow.loadURL(
+    isDev
+      ? "http://localhost:3000"
+      : `file://${path.join(__dirname, "../build/index.html")}`
+  );
+  mainWindow.on("closed", () => (mainWindow = null));
+}
+
 app.on("ready", createWindow);
-app.on("window-all-closed", function () {
+
+app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
   }
 });
-app.on("activate", function () {
+
+app.on("activate", () => {
   if (mainWindow === null) {
     createWindow();
   }
 });
-function createWindow() {
-  mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 1024,
-    title: "الأمين 108",
-    webPreferences: {
-      webSecurity: false,
-    },
-  });
-  // mainWindow.loadURL(`file://${path.join(__dirname, "../build/index.html")}`);
-  // mainWindow.loadURL(
-  //   isDev
-  //     ? `file://${path.join(__dirname, "../build/index.html")}`
-  //     : "http://localhost:3000"
-  // );
-  mainWindow.loadURL("http://localhost:3001");
-
-  mainWindow.on("closed", function () {
-    mainWindow = null;
-  });
-  mainWindow.on("page-title-updated", function (e) {
-    e.preventDefault();
-  });
-}

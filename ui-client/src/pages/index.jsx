@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import io from "socket.io-client";
 import axios from "axios";
-import amen from "./amen.jpg";
 import { useTranslation } from "react-i18next";
 
+import amen from "../images/amen.png";
 import settingsImage from "../images/settings.png";
 import search from "../images/search.png";
 import phoneCall from "../images/phone-call.png";
+
 import { RemoveScrollBar } from "react-remove-scroll-bar";
 import { Link } from "react-router-dom";
 import {
@@ -77,14 +78,16 @@ export default function Home() {
       <RemoveScrollBar />
 
       <div style={{ position: "relative" }}>
-        <Image
-          src={amen}
-          alt="Picture of amen"
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-        ></Image>
+        <div>
+          <Image
+            src={amen}
+            alt="Picture of amen"
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          ></Image>
+        </div>
         <Container
           fluid
           style={{ top: "20%", bottom: "20%", position: "absolute" }}

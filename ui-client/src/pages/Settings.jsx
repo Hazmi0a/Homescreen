@@ -71,7 +71,11 @@ export const Settings = () => {
     <LangContext.Consumer>
       {(context) => (
         <div className={contextPad.pad}>
-          <ListGroup variant="flush" className={contextPad.pad}>
+          <ListGroup
+            style={{ fontSize: "18px" }}
+            variant="flush"
+            className={contextPad.pad}
+          >
             <ListGroup.Item action>{t("change_time")}</ListGroup.Item>
             <ListGroup.Item action={contextPad.pad} onClick={handleChangeLand}>
               {t("change_lang")}
@@ -97,7 +101,7 @@ export const Settings = () => {
 
           <br />
 
-          <ListGroup variant="flush">
+          <ListGroup style={{ fontSize: "18px" }} variant="flush">
             <Link to="/settings/SystemInfo">
               <ListGroup.Item action>{t("system_info")} </ListGroup.Item>
             </Link>

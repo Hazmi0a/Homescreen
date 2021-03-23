@@ -15,26 +15,26 @@ export const NavigationBar = (settingsPage) => {
     <>
       <Navbar
         className="justify-content-center"
-        style={{ height: "50px" }}
+        style={{ height: "70px" }}
         fixed="bottom"
         variant="dark"
         bg="dark"
       >
-        <Nav fill variant="tabs">
+        <Nav fill variant="pills">
           <Row>
             <Col style={{ marginRight: "10rem" }}>
               <Link style={{}} onClick={() => backFunction()}>
-                <FontAwesomeIcon size="2x" icon={faArrowLeft} />
+                <FontAwesomeIcon size="3x" icon={faArrowLeft} />
               </Link>
             </Col>
             <Col>
               <Link to="/">
-                <FontAwesomeIcon size="2x" icon={faHome} />
+                <FontAwesomeIcon size="3x" icon={faHome} />
               </Link>
             </Col>
             <Col style={{ marginLeft: "10rem" }}>
               <Link to="/settings">
-                <FontAwesomeIcon size="2x" icon={faCog} />
+                <FontAwesomeIcon size="3x" icon={faCog} />
               </Link>
             </Col>
           </Row>

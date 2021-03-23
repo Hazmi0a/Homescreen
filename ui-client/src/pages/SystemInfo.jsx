@@ -51,7 +51,7 @@ export const SystemInfo = () => {
   return currentLanguage === "en" ? (
     <div className={lang}>
       <div>
-        <ListGroup variant="flush">
+        <ListGroup style={{ fontSize: "18px" }} variant="flush">
           <ListGroup.Item
             width="100%"
             style={{ textAlign: "center", width: "100%" }}
@@ -63,7 +63,7 @@ export const SystemInfo = () => {
       </div>
       <br />
 
-      <Table variant="dark" hover>
+      <Table style={{ fontSize: "18px" }} variant="dark" hover>
         <thead>
           <tr>
             <th style={{ textAlign: "left" }}>{t("device_name")}</th>

@@ -11,7 +11,14 @@ import {
   useConfirmationDialog,
 } from "./components/ConfirmationDialogProvider/ConfirmationDialogProvider";
 import Home from "./pages/index";
-import { BrowserRouter, Switch, Route, Link, Router } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link,
+  Router,
+  Redirect,
+} from "react-router-dom";
 import { Settings } from "./pages/Settings";
 import { InputScreen } from "./pages/InputScreen";
 import { SystemInfo } from "./pages/SystemInfo";
@@ -47,6 +54,9 @@ function App() {
                       </Route>
                       <Route path="/settings/SystemInfo">
                         <SystemInfo />
+                      </Route>
+                      <Route path="*">
+                        <Redirect to="/" />
                       </Route>
                     </Switch>
                     <NavigationBar />

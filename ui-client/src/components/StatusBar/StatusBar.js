@@ -46,14 +46,14 @@ export const StatusBar = () => {
         fixed="top"
         className="justify-content-between statbar bg-dark-trans"
       >
-        <Button
+        {/* <Button
           size="sm"
           variant="link"
           ref={target}
           onClick={() => setShow(!show)}
         >
           <FontAwesomeIcon icon={faSun} size="lg" />
-        </Button>
+        </Button> */}
         <Overlay target={target.current} show={show} placement="bottom">
           {(props) => (
             <Tooltip id="overlay-example" {...props}>
@@ -63,7 +63,12 @@ export const StatusBar = () => {
             </Tooltip>
           )}
         </Overlay>
-        <Nav.Item>
+        <Nav.Item
+          style={{
+            position: "fixed" /* or absolute */,
+            right: "50%",
+          }}
+        >
           <Nav.Link eventKey="disabled" disabled>
             11:00 AM
           </Nav.Link>
