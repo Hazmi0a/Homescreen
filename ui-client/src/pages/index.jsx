@@ -38,6 +38,8 @@ import { RecievingFax } from "../components/RecievingFax/RecievingFax";
 import { SendingFax } from "../components/SendingFax/SendingFax";
 import { StatusBar } from "../components/StatusBar/StatusBar";
 import { useConfirmationDialog } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
+import { useMediaQuery } from "react-responsive";
+
 let socket;
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -70,13 +72,21 @@ export default function Home() {
     setSettings(!settings);
   };
 
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
+  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
+
+  //All claaNames will be found in index.css
   return (
     <>
       {/* <StatusBar /> */}
       <SendingFax />
       <RecievingFax />
       <RemoveScrollBar />
-
       <div style={{ position: "relative" }}>
         <div>
           <Image
@@ -84,25 +94,14 @@ export default function Home() {
             alt="Picture of amen"
             style={{
               width: "100%",
-              height: "100%",
+              height: "auto",
             }}
           ></Image>
         </div>
-        <Container
-          fluid
-          style={{ top: "20%", bottom: "20%", position: "absolute" }}
-        >
+        <Container fluid className="indexContainer">
           <Row display="flex" style={{ height: "100%", alignItems: "center" }}>
             <Col>
-              <Card
-                bg="dark"
-                opacity=".6"
-                style={{
-                  width: "13rem",
-                  float: "none",
-                  margin: "0 auto",
-                }}
-              >
+              <Card bg="dark" opacity=".6" className="cardSizePosition">
                 <Button opacity=".6" variant="outline-dark" href="/">
                   <Card.Img
                     variant="top"
@@ -120,15 +119,7 @@ export default function Home() {
             </Col>
 
             <Col>
-              <Card
-                href="/"
-                bg="dark"
-                style={{
-                  width: "13rem",
-                  float: "none",
-                  margin: "0 auto",
-                }}
-              >
+              <Card href="/" bg="dark" className="cardSizePosition">
                 <Button
                   opacity=".6"
                   variant="outline-dark"
@@ -150,19 +141,8 @@ export default function Home() {
             </Col>
 
             <Col>
-              <Card
-                href="/"
-                bg="dark"
-                style={{
-                  width: "13rem",
-                  float: "none",
-                  margin: "0 auto",
-                }}
-              >
-                <Link
-                  to="/Settings"
-                  style={{ float: "none", margin: "0 auto" }}
-                >
+              <Card href="/" bg="dark" className="cardSizePosition">
+                <Link to="/Settings" className="centerItems">
                   <Card.Img
                     variant="top"
                     className="mt-2"
@@ -180,7 +160,6 @@ export default function Home() {
           </Row>
         </Container>
       </div>
-
       {/* {settings && <Settings />}
       <NavigationBar settingsPage={handleSettingClick} /> */}
     </>

@@ -99,3 +99,20 @@
   left: 16px;
   font-size: 18px;
 }
+.cardSizePosition {
+  width: 13rem;
+  float: none;
+  margin: 0 auto;
+}
+.indexContainer {
+  top: 20%;
+  bottom: 20%;
+  position: absolute;
+}
+.listGroupFontSize {
+  font-size: 20px;
+}
+.centerItems {
+  float: none;
+  margin: 0 auto;
+}
