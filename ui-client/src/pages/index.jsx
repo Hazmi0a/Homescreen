@@ -38,36 +38,120 @@ import { RecievingFax } from "../components/RecievingFax/RecievingFax";
 import { SendingFax } from "../components/SendingFax/SendingFax";
 import { StatusBar } from "../components/StatusBar/StatusBar";
 import { useConfirmationDialog } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 let socket;
 export default function Home() {
   const { t, i18n } = useTranslation();
   const [message, setMessage] = useState({});
   const [settings, setSettings] = useState(false);
+  const [connection, setConnection] = useState(null);
+  const [ConnID, setConnID] = useState(null);
   const Confirmation = {
     title: "call_procedure",
     message: "",
     type: 2,
   };
   // const [show, setShow] = useState(false);
-  const ENDPOINT = process.env.API_ENDPOINT;
+  const ENDPOINT =
+    process.env.REACT_APP_API_ENDPOINT || "http://localhost:5000/";
   const { getConfirmation } = useConfirmationDialog();
+  // useEffect(() => {
+  //   socket = io(ENDPOINT);
+  //   socket.on("new message", (data) => {
+  //     getConfirmation({
+  //       title: data.title,
+  //       message: data.message,
+  //       type: data.type,
+  //     });
+  //     console.log(data.type);
+  //   });
+  //   // CLEAN UP THE EFFECT
+  //   return () => socket.disconnect();
+  //   //
+  // }, [ENDPOINT]);
+  // useEffect(() => {
+  //   const newConnection = new HubConnectionBuilder()
+  //     .withUrl("https://localhost:5001/notificationHub")
+  //     .withAutomaticReconnect()
+  //     .build();
+
+  //   setConnection(newConnection);
+  // }, []);
   useEffect(() => {
-    socket = io(ENDPOINT);
-    socket.on("new message", (data) => {
-      getConfirmation({
-        title: data.title,
-        message: data.message,
-        type: data.type,
+    configSocket();
+  }, []);
+  const configSocket = async () => {
+    try {
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imhhem1pMGFiIiwicm9sZSI6ImFkbWluIiwiZ2l2ZW5fbmFtZSI6IkFiZHVsbGFoIiwiZmFtaWx5X25hbWUiOiJBbGhhem1pIiwiZW1haWwiOiJlbWFpbDJAZW1haWwuY29tIiwibmFtZWlkIjoiMTkiLCJuYmYiOjE2MTgxMzk5ODksImV4cCI6MTYxODE0MzU4OSwiaWF0IjoxNjE4MTM5OTg5fQ.8SPYnX8ETH8wisGuc-X2Xv8Bxkj7K9qSGk8Cv4lkVvM";
+      const socketConnection = new HubConnectionBuilder()
+        .configureLogging(LogLevel.Debug)
+        .withUrl("https://localhost:5001/notificationHub", {
+          accessTokenFactory: () => token,
+        })
+        .build();
+      await socketConnection.start();
+      setConnection(socketConnection);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (connection) {
+      connection.on("ReceiveMessage", (message) => {
+        getConfirmation({
+          title: message.title,
+          message: message,
+          type: message.type,
+        });
       });
-      console.log(data.type);
-    });
-    // CLEAN UP THE EFFECT
-    return () => socket.disconnect();
-    //
-  }, [ENDPOINT]);
+      connection.on("ReceiveConnID", (message) => {
+        setConnID(message);
+        getConfirmation({
+          title: message.title,
+          message: message,
+          type: message.type,
+        });
+      });
+    }
+  }, [connection]);
+  // useEffect(() => {
+  //   if (connection) {
+  //     connection
+  //       .start()
+  //       .then((result) => {
+  //         console.log("Connected!");
+  //         console.log(result);
+  //         connection.on("ReceiveMessage", (message) => {
+  //           getConfirmation({
+  //             title: message.title,
+  //             message: message.message,
+  //             type: message.type,
+  //           });
+  //         });
+  //         connection.on("ReceiveConnID", (message) => {
+  //           getConfirmation({
+  //             title: message.title,
+  //             message: message,
+  //             type: message.type,
+  //           });
+  //         });
+  //       })
+  //       .catch((e) => console.log("Connection failed: ", e));
+  //   }
+  // }, [connection]);
 
   const handleSettingClick = () => {
     setSettings(!settings);
+  };
+  const handleMessage = () => {
+    const message = JSON.stringify({
+      From: ConnID,
+      To: "",
+      Message: "sendMessage.value",
+    });
+    connection && connection.invoke("SendMessageAsync", message);
   };
 
   return (
@@ -103,7 +187,11 @@ export default function Home() {
                   margin: "0 auto",
                 }}
               >
-                <Button opacity=".6" variant="outline-dark" href="/">
+                <Button
+                  opacity=".6"
+                  variant="outline-dark"
+                  onClick={() => handleMessage()}
+                >
                   <Card.Img
                     variant="top"
                     className="mt-2"
