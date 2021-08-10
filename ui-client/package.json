@@ -60,7 +60,8 @@
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"cross-env BROWSER=none react-scripts start\" \"wait-on http://localhost:3000 && electron .",
     "electron-build": "electron-builder -c.extraMetadata.main=build/electron.js",
-    "p-build": "npm run build && electron-builder -c.extraMetadata.main=build/electron.js"
+    "OLDp-build": "npm run build && electron-builder -c.extraMetadata.main=build/electron.js",
+    "p-build": "npm run build && npm run electron-build"
   },
   "eslintConfig": {
     "extends": [
