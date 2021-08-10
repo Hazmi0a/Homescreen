@@ -15,33 +15,40 @@ const ConfirmationDialog = ({
 }) => {
   const { t, i18n } = useTranslation();
 
-  // based on the type of the dialog wanted, 0 without action buttons, 1 with OK button
-  return type == 0 ? (
-    <>
-      <Modal centered show={open} onHide={onDismiss}>
-        <Modal.Header>
-          <Modal.Title>{t(title)}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{t(message)}</Modal.Body>
-      </Modal>
-    </>
-  ) : type == 1 ? (
-    <>
-      {" "}
-      <Modal centered show={open} onHide={onDismiss}>
-        <Modal.Header>
-          <Modal.Title>{t(title)}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{t(message)}</Modal.Body>
-        <Modal.Footer>
-          {/* <Button onClick={onDismiss}>Cancel</Button> */}
-          <Button variant="primary" onClick={onConfirm}>
-            {t("ok")}
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  ) : (
+  // based on the type of the dialog wanted, 0 without action buttons, 1 with OK button, and 2 for instructions
+  if (type == 0) {
+    return (
+      <>
+        <Modal centered show={open} onHide={onDismiss}>
+          <Modal.Header>
+            <Modal.Title>{t(title)}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{t(message)}</Modal.Body>
+        </Modal>
+      </>
+    );
+  }
+
+  if (type == 1) {
+    return (
+      <>
+        <Modal centered show={open} onHide={onDismiss}>
+          <Modal.Header>
+            <Modal.Title>{t(title)}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{t(message)}</Modal.Body>
+          <Modal.Footer>
+            {/* <Button onClick={onDismiss}>Cancel</Button> */}
+            <Button variant="primary" onClick={onConfirm}>
+              {t("ok")}
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+
+  if (type == 2) {
     <Modal centered show={open} onHide={onDismiss}>
       <Modal.Header>
         <Modal.Title>{t(title)}</Modal.Title>
@@ -58,8 +65,53 @@ const ConfirmationDialog = ({
           {t("ok")}
         </Button>
       </Modal.Footer>
-    </Modal>
-  );
+    </Modal>;
+  }
+
+  // return type == 0 ? (
+  //   <>
+  //     <Modal centered show={open} onHide={onDismiss}>
+  //       <Modal.Header>
+  //         <Modal.Title>{t(title)}</Modal.Title>
+  //       </Modal.Header>
+  //       <Modal.Body>{t(message)}</Modal.Body>
+  //     </Modal>
+  //   </>
+  // ) : type == 1 ? (
+  //   <>
+  //     {" "}
+  //     <Modal centered show={open} onHide={onDismiss}>
+  //       <Modal.Header>
+  //         <Modal.Title>{t(title)}</Modal.Title>
+  //       </Modal.Header>
+  //       <Modal.Body>{t(message)}</Modal.Body>
+  //       <Modal.Footer>
+  //         {/* <Button onClick={onDismiss}>Cancel</Button> */}
+  //         <Button variant="primary" onClick={onConfirm}>
+  //           {t("ok")}
+  //         </Button>
+  //       </Modal.Footer>
+  //     </Modal>
+  //   </>
+  // ) : (
+  //   <Modal centered show={open} onHide={onDismiss}>
+  //     <Modal.Header>
+  //       <Modal.Title>{t(title)}</Modal.Title>
+  //     </Modal.Header>
+  //     <Modal.Body>
+  //       {t(message)}
+  //       <p>{t("insert_document_in_the_connected_fax")}</p>
+  //       <p>{t("call_number_followed_by_#")}</p>
+  //       <p>{t("iniaite_call")}</p>
+  //     </Modal.Body>
+  //     <Modal.Footer>
+  //       {/* <Button onClick={onDismiss}>Cancel</Button> */}
+  //       <Button variant="primary" onClick={onConfirm}>
+  //         {t("ok")}
+  //       </Button>
+  //     </Modal.Footer>
+  //   </Modal>
+  // );
 };
 
 const ConfirmationDialogContext = React.createContext({});
