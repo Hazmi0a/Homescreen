@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import "../style/index.css";
+import "../style/keyboard.css";
 import { useTranslation } from "react-i18next";
 import Keyboard from "react-simple-keyboard";
 import Arabic from "../locate/ar/arabic";

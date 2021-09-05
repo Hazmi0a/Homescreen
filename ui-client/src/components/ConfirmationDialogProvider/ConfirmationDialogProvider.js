@@ -27,9 +27,7 @@ const ConfirmationDialog = ({
         </Modal>
       </>
     );
-  }
-
-  if (type == 1) {
+  } else if (type == 1) {
     return (
       <>
         <Modal centered show={open} onHide={onDismiss}>
@@ -46,26 +44,28 @@ const ConfirmationDialog = ({
         </Modal>
       </>
     );
-  }
-
-  if (type == 2) {
-    <Modal centered show={open} onHide={onDismiss}>
-      <Modal.Header>
-        <Modal.Title>{t(title)}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {t(message)}
-        <p>{t("insert_document_in_the_connected_fax")}</p>
-        <p>{t("call_number_followed_by_#")}</p>
-        <p>{t("iniaite_call")}</p>
-      </Modal.Body>
-      <Modal.Footer>
-        {/* <Button onClick={onDismiss}>Cancel</Button> */}
-        <Button variant="primary" onClick={onConfirm}>
-          {t("ok")}
-        </Button>
-      </Modal.Footer>
-    </Modal>;
+  } else if (type == 2) {
+    return (
+      <Modal centered show={open} onHide={onDismiss}>
+        <Modal.Header>
+          <Modal.Title>{t(title)}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {t(message)}
+          <p>{t("insert_document_in_the_connected_fax")}</p>
+          <p>{t("call_number_followed_by_#")}</p>
+          <p>{t("iniaite_call")}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          {/* <Button onClick={onDismiss}>Cancel</Button> */}
+          <Button variant="primary" onClick={onConfirm}>
+            {t("ok")}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  } else {
+    return <></>;
   }
 
   // return type == 0 ? (
