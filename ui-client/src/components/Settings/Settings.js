@@ -1,33 +1,9 @@
-import React, {useEffect, useState} from "react";
-import io from "socket.io-client";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
 
 import { ListGroup } from "react-bootstrap";
-export const  Settings = () =>{
+export const Settings = () => {
   const { t, i18n } = useTranslation();
-  
- 
-//   const ENDPOINT = process.env.API_ENDPOINT;
-//   const { getConfirmation } = useConfirmationDialog();
-//   useEffect(() => {
-
-//     let socket = io(ENDPOINT);
-//     socket.on("new message", data => {
-//        getConfirmation({
-//         title: data.title,
-//         message: data.message,
-//         type: data.type
-//       });
-//       console.log(data.type);
-//     });
-//     // CLEAN UP THE EFFECT
-//     return () => socket.disconnect();
-//     //
-    
-//   }, [ENDPOINT]);
 
   return (
     <div className="pad">
@@ -46,6 +22,6 @@ export const  Settings = () =>{
       </ListGroup>
     </div>
   );
-}
+};
 
 Settings.propTypes = {};

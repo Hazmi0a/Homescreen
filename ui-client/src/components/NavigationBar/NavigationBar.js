@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faArrowLeft, faCog } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Row, Col, Navbar, Nav } from "react-bootstrap";
-import io from "socket.io-client";
-let socket;
 export const NavigationBar = (settingsPage) => {
   const backFunction = () => {
     // if (router.pathname != "/") {

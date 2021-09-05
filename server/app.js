@@ -54,7 +54,13 @@ socketio.on("connection", (socket) => {
   socket.on("Authenticated", (payload) => {
     console.log("message: \n" + payload);
     //TODO: change the emitted value
-    socket.broadcast.emit("Authenticated", payload);
+    if (payload === "True" || payload === true) {
+      socket.broadcast.emit("Authenticated", true);
+    } else if (payload === "False" || payload === false) {
+      socket.broadcast.emit("Authenticated", false);
+    } else {
+      socket.broadcast.emit("Authenticated", false);
+    }
   });
 
   socket.on("Logged Out", (payload) => {

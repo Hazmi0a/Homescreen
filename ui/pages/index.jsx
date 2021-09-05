@@ -41,22 +41,22 @@ export default function Home() {
   const [settings, setSettings] = useState(false);
 
   // const [show, setShow] = useState(false);
-  const ENDPOINT = process.env.API_ENDPOINT;
-  const { getConfirmation } = useConfirmationDialog();
-  useEffect(() => {
-    socket = io(ENDPOINT);
-    socket.on("new message", (data) => {
-      getConfirmation({
-        title: data.title,
-        message: data.message,
-        type: data.type,
-      });
-      console.log(data.type);
-    });
-    // CLEAN UP THE EFFECT
-    return () => socket.disconnect();
-    //
-  }, [ENDPOINT]);
+  // const ENDPOINT = process.env.API_ENDPOINT;
+  // const { getConfirmation } = useConfirmationDialog();
+  // useEffect(() => {
+  //   socket = io(ENDPOINT);
+  //   socket.on("new message", (data) => {
+  //     getConfirmation({
+  //       title: data.title,
+  //       message: data.message,
+  //       type: data.type,
+  //     });
+  //     console.log(data.type);
+  //   });
+  //   // CLEAN UP THE EFFECT
+  //   return () => socket.disconnect();
+  //   //
+  // }, [ENDPOINT]);
 
   const handleSettingClick = () => {
     console.log("Settings");

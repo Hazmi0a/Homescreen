@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import PropTypes from "prop-types";
 import { Button, Modal } from "react-bootstrap";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import io from "socket.io-client";
 
 const ConfirmationDialog = ({
   open,

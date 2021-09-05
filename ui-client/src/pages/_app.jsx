@@ -14,27 +14,7 @@ import {
   useConfirmationDialog,
 } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
 
-let socket;
-
 export default function MyApp({ Component, pageProps }) {
-  // const ENDPOINT = process.env.API_ENDPOINT;
-  // const { getConfirmation } = useConfirmationDialog();
-  // useEffect(() => {
-
-  //   socket = io(ENDPOINT);
-  //   socket.on("new message", data => {
-  //      getConfirmation({
-  //       title: data.title,
-  //       message: data.message,
-  //       type: data.type
-  //     });
-  //     console.log(data.type);
-  //   });
-  //   // CLEAN UP THE EFFECT
-  //   return () => socket.disconnect();
-  //   //
-
-  // }, [ENDPOINT]);
   return (
     <I18nextProvider i18n={i18n}>
       <ConfirmationDialogProvider>
