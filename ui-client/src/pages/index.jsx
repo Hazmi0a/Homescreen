@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import io from "socket.io-client";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
 
 import amen from "../images/amen.png";
@@ -10,38 +8,13 @@ import phoneCall from "../images/phone-call.png";
 
 import { RemoveScrollBar } from "react-remove-scroll-bar";
 import { Link } from "react-router-dom";
-import {
-  faHome,
-  faArrowLeft,
-  faCog,
-  faSun,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardDeck,
-  Button,
-  Navbar,
-  Nav,
-  Image,
-  Form,
-  FormControl,
-  NavDropdown,
-  OverlayTrigger,
-  Overlay,
-  Popover,
-  Tooltip,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import { RecievingFax } from "../components/RecievingFax/RecievingFax";
 import { SendingFax } from "../components/SendingFax/SendingFax";
-import { StatusBar } from "../components/StatusBar/StatusBar";
 import { useConfirmationDialog } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
 import { useMediaQuery } from "react-responsive";
 
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
-let socket;
 export default function Home() {
   const { t, i18n } = useTranslation();
   const [message, setMessage] = useState({});

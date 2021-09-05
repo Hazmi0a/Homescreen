@@ -33,7 +33,6 @@ function App() {
   });
   const { getConfirmation } = useConfirmationDialog();
   useEffect(() => {
-    // socket =
     socket.on("new message", (data) => {
       getConfirmation({
         title: data.title,
@@ -43,10 +42,6 @@ function App() {
       console.log(data.type);
     });
     socket.on("Authenticated", (data) => {
-      console.log(data);
-      setUser(data);
-    });
-    socket.on("Logged Out", (data) => {
       console.log(data);
       setUser(data);
     });

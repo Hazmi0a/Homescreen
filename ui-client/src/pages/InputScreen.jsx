@@ -68,15 +68,16 @@ export const InputScreen = () => {
     socket.emit("new password", input, (ack) => {
       setInput(ack);
     });
+    socket.disconnect();
   };
 
-  useEffect(() => {
-    socket = io(ENDPOINT);
-    socket.on("authentication", (data) => {
-      console.log(data);
-      data == "Success" ? history.push("/") : console.log(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   socket = io(ENDPOINT);
+  //   socket.on("authentication", (data) => {
+  //     console.log(data);
+  //     data == "Success" ? history.push("/") : console.log(data);
+  //   });
+  // }, []);
 
   return (
     <>

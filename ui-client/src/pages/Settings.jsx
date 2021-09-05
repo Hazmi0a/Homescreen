@@ -1,24 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import io from "socket.io-client";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import {
-  Col,
-  ListGroup,
-  Item,
-  Row,
-  Form,
-  NavDropdown,
-  Button,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap";
+import { ListGroup, DropdownButton, Dropdown } from "react-bootstrap";
 import { useConfirmationDialog } from "../components/ConfirmationDialogProvider/ConfirmationDialogProvider";
-import { i18 } from "react-i18next";
 import { LangContext, context } from "../languageContext";
 
 export const Settings = () => {

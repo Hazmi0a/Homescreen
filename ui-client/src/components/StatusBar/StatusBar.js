@@ -36,6 +36,7 @@ export const StatusBar = () => {
         setCurrentMode("t38");
       }
     });
+    socket.disconnect();
   };
   return (
     <Container>
